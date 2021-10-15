@@ -28,11 +28,14 @@ function App(): ReactElement {
 
   function handleTaskChange(id: number, done: boolean): void {
     let newList = [...list];
-    for(let i in newList) {
-      if(newList[i].id === id) {
-        newList[i].done = done;
-      }
+
+    for (let item of newList) {
+      if (item.id === id)
+        item.done = done;
     }
+
+    StorageService.setTasksAtStorage(newList);
+
     setList(newList);
   }
 

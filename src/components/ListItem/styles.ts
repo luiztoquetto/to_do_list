@@ -12,6 +12,7 @@ export const Container = styled.div(({ done }: ContainerProps) => (
     border-radius: 10px;
     margin-bottom: 10px;
     align-items: center;
+    position: relative;
 
     input {
         width: 25px;
@@ -22,6 +23,15 @@ export const Container = styled.div(({ done }: ContainerProps) => (
     label {
         color: #ccc;
         text-decoration: ${done ? 'line-through' : 'initial'};
+    }
+
+    span {
+        color: #ccc;
+        opacity: 0.2;
+        right: 1rem;
+        font-weight: bold;
+        font-size: 18px;
+        position: absolute;
     }
     `
 ));

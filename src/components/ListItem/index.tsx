@@ -15,7 +15,10 @@ export function ListItem({ item, onChange }: Props): ReactElement {
                 checked={item.done} 
                 onChange={e => onChange(item.id, e.target.checked)}
             />
-            <label>{item.name}</label>
+            <label>
+                {item.name} - {item.done ? 'Tarefa concluída ✅' : 'Tarefa em andamento ⌚'}
+            </label>
+            <span>{item.id}</span>
         </C.Container>
     );
 }
