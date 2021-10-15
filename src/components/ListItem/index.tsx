@@ -1,6 +1,5 @@
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import { Item } from '../../types/Item';
-
 import * as C from './styles';
 
 type Props = {
@@ -8,11 +7,16 @@ type Props = {
 }
 
 export function ListItem({ item }: Props): ReactElement {
-    return(
-        <C.Container>
-            {item.name}    
+    const [isChecked, setIsChecked] = useState(item.done);
 
-            {/* 38min aula1 */}
+    return(
+        <C.Container done={isChecked}>
+            <input 
+                type="checkbox" 
+                checked={isChecked} 
+                onChange={(event) => setIsChecked(event.target.checked)}
+            />
+            <label>{item.name}</label>
         </C.Container>
     );
 }

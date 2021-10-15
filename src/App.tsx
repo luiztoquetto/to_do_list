@@ -1,8 +1,6 @@
 import { ReactElement, useState } from 'react';
 import { Item } from './types/Item';
-
 import { ListItem } from './components/ListItem';
-
 import * as C from './App.styles';
 
 function App(): ReactElement {
