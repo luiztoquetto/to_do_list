@@ -1,20 +1,19 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import { Item } from '../../types/Item';
 import * as C from './styles';
 
 type Props = {
     item: Item;
+    onChange: (id: number, done: boolean) => void;
 }
 
-export function ListItem({ item }: Props): ReactElement {
-    const [isChecked, setIsChecked] = useState(item.done);
-
+export function ListItem({ item, onChange }: Props): ReactElement {
     return(
-        <C.Container done={isChecked}>
+        <C.Container done={item.done}>
             <input 
                 type="checkbox" 
-                checked={isChecked} 
-                onChange={(event) => setIsChecked(event.target.checked)}
+                checked={item.done} 
+                onChange={e => onChange(item.id, e.target.checked)}
             />
             <label>{item.name}</label>
         </C.Container>

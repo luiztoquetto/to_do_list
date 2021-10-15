@@ -1,32 +1,54 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { Item } from './types/Item';
 import { ListItem } from './components/ListItem';
+import { AddArea } from './components/AddArea';
+import { StorageService } from './services/storage';
 import * as C from './App.styles';
 
 function App(): ReactElement {
-  const [list, setList] = useState<Item[]>([
-    {
-      id: 1,
-      name: 'Panda',
-      done: false,
-    },
+  const [list, setList] = useState<Item[]>([]);
 
-    {
-      id: 2,
-      name: 'Gato',
-      done: true,
+  useEffect(() => {
+    setList(StorageService.getTasksFromStorage());
+  }, []);
+
+  function handleAddTask(taskName: string): void {
+    let newList = [...list];
+
+    newList.push({
+      id: (list.length + 1),
+      name: taskName,
+      done: false,
+    });
+
+    StorageService.setTasksAtStorage(newList);
+
+    setList(newList);
+  }
+
+  function handleTaskChange(id: number, done: boolean): void {
+    let newList = [...list];
+    for(let i in newList) {
+      if(newList[i].id === id) {
+        newList[i].done = done;
+      }
     }
-  ]);
+    setList(newList);
+  }
 
   return (
     <C.Container>
       <C.Area>
         <C.Header>Lista de Tarefas</C.Header>
 
-        {/* Nova tarefa */}
+        <AddArea onEnter={handleAddTask} />
 
-        { list.map((item, index) => (
-          <ListItem key={index} item={item} />
+        {list.map((item, index) => (
+          <ListItem 
+            key={index} 
+            item={item} 
+            onChange={handleTaskChange}
+          />
         ))}
 
       </C.Area>
