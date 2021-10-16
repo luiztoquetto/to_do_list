@@ -45,14 +45,16 @@ function App(): ReactElement {
         <C.Header>Lista de Tarefas</C.Header>
 
         <AddArea onEnter={handleAddTask} />
-
-        {list.map((item, index) => (
-          <ListItem 
-            key={index} 
-            item={item} 
-            onChange={handleTaskChange}
-          />
-        ))}
+        
+        <C.ListArea>
+          {list.map((item, index) => (
+            <ListItem 
+              key={index} 
+              item={item} 
+              onChange={handleTaskChange}
+            />
+          ))}
+        </C.ListArea>
 
       </C.Area>
     </C.Container>

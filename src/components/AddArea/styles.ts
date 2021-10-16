@@ -5,6 +5,7 @@ export const Container = styled.div`
     border-radius: 15px;
     padding: 10px;
     display: flex;
+    overflow: hidden;
     margin: 20px 0;
     align-items: center;
 

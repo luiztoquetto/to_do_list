@@ -9,20 +9,28 @@ export const Container = styled.div(({ done }: ContainerProps) => (
     display: flex;
     background-color: #20212c;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 15px;
     margin-bottom: 10px;
     align-items: center;
     position: relative;
+    user-select: none;
 
     input {
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
         margin-right: 5px;
+        cursor: pointer;
+        min-width: 20px;
+        min-height: 20px;
     }
 
     label {
         color: #ccc;
         text-decoration: ${done ? 'line-through' : 'initial'};
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 90%;
     }
 
     span {
@@ -33,5 +41,24 @@ export const Container = styled.div(({ done }: ContainerProps) => (
         font-size: 18px;
         position: absolute;
     }
+
+    @media (max-width: 768px) {
+        label {
+            max-width: 85%;
+        }
+    }
+
+    @media (max-width: 520px) {
+        label {
+            max-width: 80%;
+        }
+    }
+
+    @media (max-width: 375px) {
+        label {
+            max-width: 75%;
+        }
+    }
+
     `
 ));
