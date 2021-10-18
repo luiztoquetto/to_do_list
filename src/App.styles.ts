@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ListArea = styled.div`
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     overflow-y: auto;
     overflow-x: hidden;
     max-height: 70vh;

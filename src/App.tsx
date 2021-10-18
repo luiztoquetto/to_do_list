@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState, useRef } from 'react';
 import { Item } from './types/Item';
 import { ListItem } from './components/ListItem';
 import { AddArea } from './components/AddArea';
@@ -7,6 +7,7 @@ import * as C from './App.styles';
 
 function App(): ReactElement {
   const [list, setList] = useState<Item[]>([]);
+  const refList = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setList(StorageService.getTasksFromStorage());
@@ -24,6 +25,8 @@ function App(): ReactElement {
     StorageService.setTasksAtStorage(newList);
 
     setList(newList);
+
+    scrollTop();
   }
 
   function handleTaskChange(id: number, done: boolean): void {
@@ -39,6 +42,10 @@ function App(): ReactElement {
     setList(newList);
   }
 
+  function scrollTop(): void {
+    refList.current?.scrollTo(0, 0);
+  }
+
   return (
     <C.Container>
       <C.Area>
@@ -46,7 +53,9 @@ function App(): ReactElement {
 
         <AddArea onEnter={handleAddTask} />
         
-        <C.ListArea>
+        <C.ListArea
+          ref={refList}
+        >
           {list.map((item, index) => (
             <ListItem 
               key={index} 

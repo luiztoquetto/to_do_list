@@ -26,7 +26,7 @@ export const Container = styled.div(({ done }: ContainerProps) => (
 
     label {
         color: #ccc;
-        text-decoration: ${done ? 'line-through' : 'initial'};
+        opacity: ${done ? '0.3' : '1'};
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
