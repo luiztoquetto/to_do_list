@@ -18,7 +18,7 @@ export const Container = styled.div(({ done }: ContainerProps) => (
     input {
         width: 20px;
         height: 20px;
-        margin-right: 5px;
+        margin-right: 10px;
         cursor: pointer;
         min-width: 20px;
         min-height: 20px;
